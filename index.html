@@ -71,7 +71,7 @@
         }
     </script>
 </head>
-<body class="bg-white text-slate-900 pb-20 lg:pb-0"> <!-- Added padding bottom for mobile sticky bar -->
+<body class="bg-white text-slate-900 pb-20 lg:pb-0">
 
     <!-- Top Banner -->
     <div class="bg-[#00B341] text-white text-center py-2 text-sm font-bold tracking-wide" id="top">
@@ -80,98 +80,112 @@
 
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
-                <!-- Logo & Location -->
-                <div class="flex items-center gap-2 sm:gap-6">
+                <!-- Left Section: Logo & Location (Desktop) -->
+                <div class="flex items-center gap-6">
+                    <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
                         <div class="bg-[#00B341] p-2 rounded-xl">
                             <div class="relative">
-                                <i data-lucide="leaf" class="h-5 w-5 sm:h-6 sm:w-6 text-white"></i>
+                                <i data-lucide="leaf" class="h-6 w-6 text-white"></i>
                                 <div class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5">
-                                    <i data-lucide="stethoscope" class="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#00B341]"></i>
+                                    <i data-lucide="stethoscope" class="h-2.5 w-2.5 text-[#00B341]"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col">
-                            <span class="font-bold text-xl sm:text-2xl text-slate-800 tracking-tight leading-none">Yoda</span>
-                            <span class="text-[8px] sm:text-[10px] text-slate-500 font-medium tracking-wider uppercase">Diagnostics</span>
+                        <div class="flex flex-col justify-center">
+                            <span class="font-extrabold text-2xl text-slate-900 tracking-tight leading-none">Yoda</span>
+                            <span class="text-[10px] text-slate-500 font-semibold tracking-widest uppercase">DIAGNOSTICS</span>
                         </div>
                     </div>
                     
-                    <div class="hidden xl:flex items-center gap-2 text-sm text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full cursor-pointer hover:bg-slate-200 transition-colors hover:ring-2 hover:ring-slate-200">
-                        <i data-lucide="map-pin" class="h-4 w-4"></i>
-                        <span>Hyderabad</span>
-                        <i data-lucide="chevron-down" class="h-3 w-3"></i>
+                    <!-- Location Selector (Hidden on Mobile, Visible on Desktop) -->
+                    <div class="hidden xl:flex items-center gap-2 text-sm text-slate-700 bg-slate-100/80 px-4 py-2 rounded-full cursor-pointer hover:bg-slate-200 transition-colors">
+                        <i data-lucide="map-pin" class="h-4 w-4 text-slate-500"></i>
+                        <span class="font-medium">Hyderabad</span>
+                        <i data-lucide="chevron-down" class="h-3 w-3 text-slate-400"></i>
                     </div>
                 </div>
 
-                <!-- Desktop Nav -->
-                <div class="hidden lg:flex items-center space-x-6">
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-medium transition-colors">About</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-medium transition-colors">Diagnostics</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-medium transition-colors">DNA Decoder</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-medium transition-colors relative group">
+                <!-- Center Section: Nav Links (Desktop Only) -->
+                <div class="hidden xl:flex items-center gap-8">
+                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors">About</a>
+                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors">Diagnostics</a>
+                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors leading-tight text-center">DNA<br>Decoder</a>
+                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors relative flex items-center gap-1">
                         MedMatch
                         <span class="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
                     </a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-medium transition-colors relative group">
-                        Fetal Medicine
-                        <span class="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
+                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors relative leading-tight text-center">
+                        Fetal<br>Medicine
+                        <span class="absolute -top-2 -right-8 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
                     </a>
                 </div>
 
-                <!-- Search & Actions - Right Aligned on Mobile -->
-                <div class="flex items-center gap-3 sm:gap-4">
-                    <div class="relative hidden xl:block w-64 group">
-                        <input type="text" placeholder="Search symptoms, tests..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-[#00B341] focus:ring-2 focus:ring-[#00B341]/20 transition-all">
-                        <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-slate-400 group-focus-within:text-[#00B341] transition-colors"></i>
+                <!-- Right Section: Search & Actions -->
+                <div class="flex items-center gap-3 sm:gap-6">
+                    <!-- Search Bar (Desktop Only) -->
+                    <div class="relative hidden xl:block w-72">
+                        <input type="text" placeholder="Search symptoms, tests..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-[#00B341] focus:ring-2 focus:ring-[#00B341]/20 transition-all">
+                        <i data-lucide="search" class="absolute left-3.5 top-3 h-4 w-4 text-slate-400"></i>
                     </div>
                     
-                    <!-- Mobile Search Icon -->
-                    <button class="text-slate-500 hover:text-[#00B341] lg:hidden">
-                        <i data-lucide="search" class="h-5 w-5 sm:h-6 sm:w-6"></i>
-                    </button>
-
-                    <button class="text-slate-500 hover:text-[#00B341] transition-colors relative">
-                        <i data-lucide="shopping-cart" class="h-5 w-5 sm:h-6 sm:w-6"></i>
-                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] sm:text-xs font-bold rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 flex items-center justify-center shadow-sm">0</span>
-                    </button>
-                    
-                    <button class="bg-slate-900 text-white px-3 py-1.5 sm:px-5 sm:py-2 rounded-full hover:bg-slate-800 transition-all hover:shadow-lg transform hover:-translate-y-0.5 font-medium text-xs sm:text-sm flex items-center gap-2">
-                        <span class="hidden sm:inline">Login / Sign Up</span>
-                        <span class="sm:hidden">Login</span>
-                    </button>
-
-                    <!-- Mobile menu button -->
-                    <div class="lg:hidden flex items-center">
-                        <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 p-1">
-                            <i data-lucide="menu" class="h-6 w-6 transition-transform duration-300" id="menu-icon"></i>
-                            <i data-lucide="x" class="h-6 w-6 hidden transition-transform duration-300" id="close-icon"></i>
+                    <!-- Mobile Actions Group -->
+                    <div class="flex items-center gap-4">
+                        <!-- Cart -->
+                        <button class="text-slate-600 hover:text-[#00B341] transition-colors relative p-1">
+                            <i data-lucide="shopping-cart" class="h-6 w-6"></i>
+                            <span class="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border-2 border-white">0</span>
                         </button>
+                        
+                        <!-- Login Button -->
+                        <button class="bg-slate-900 text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full hover:bg-slate-800 transition-all hover:shadow-lg transform hover:-translate-y-0.5 font-bold text-sm">
+                            <span class="hidden sm:inline">Login / Sign Up</span>
+                            <span class="sm:hidden">Login</span>
+                        </button>
+
+                        <!-- Hamburger Menu (Mobile Only) -->
+                        <div class="xl:hidden flex items-center">
+                            <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 p-1">
+                                <i data-lucide="menu" class="h-7 w-7 transition-transform duration-300" id="menu-icon"></i>
+                                <i data-lucide="x" class="h-7 w-7 hidden transition-transform duration-300" id="close-icon"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Mobile Nav Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg h-screen overflow-y-auto pb-20 transition-all duration-300 ease-in-out">
-            <div class="px-4 pt-4 pb-6 space-y-2">
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg h-screen overflow-y-auto pb-20 transition-all duration-300 ease-in-out">
+            <div class="px-4 pt-4 pb-6 space-y-4">
+                <!-- Mobile Search -->
                 <div class="mb-6">
                     <div class="relative">
                         <input type="text" placeholder="Search symptoms, tests, packages" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#00B341] focus:ring-2 focus:ring-[#00B341]/20">
                         <i data-lucide="search" class="absolute left-3 top-3.5 h-4 w-4 text-slate-400"></i>
                     </div>
                 </div>
-                <a href="#" class="block px-3 py-3 rounded-lg text-base font-medium text-slate-700 hover:bg-green-50 hover:text-[#00B341]">About</a>
-                <a href="#" class="block px-3 py-3 rounded-lg text-base font-medium text-slate-700 hover:bg-green-50 hover:text-[#00B341]">Diagnostics</a>
-                <a href="#" class="block px-3 py-3 rounded-lg text-base font-medium text-slate-700 hover:bg-green-50 hover:text-[#00B341]">DNA Decoder</a>
-                <a href="#" class="flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-slate-700 hover:bg-green-50 hover:text-[#00B341]">
-                    MedMatch <span class="bg-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
+                
+                <!-- Mobile Location -->
+                <div class="flex items-center gap-2 text-sm text-slate-700 bg-slate-100 px-4 py-3 rounded-xl">
+                    <i data-lucide="map-pin" class="h-4 w-4 text-slate-500"></i>
+                    <span class="font-medium">Hyderabad</span>
+                    <i data-lucide="chevron-down" class="h-3 w-3 text-slate-400 ml-auto"></i>
+                </div>
+
+                <div class="border-t border-slate-100 my-2"></div>
+
+                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">About</a>
+                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">Diagnostics</a>
+                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">DNA Decoder</a>
+                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">
+                    MedMatch <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
-                <a href="#" class="flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium text-slate-700 hover:bg-green-50 hover:text-[#00B341]">
-                    Fetal Medicine <span class="bg-red-100 text-red-600 text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
+                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">
+                    Fetal Medicine <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
             </div>
         </div>
@@ -249,107 +263,89 @@
         </div>
     </div>
 
-    <!-- Quick Access -->
-    <div class="bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between md:justify-center md:gap-20 py-8 overflow-x-auto no-scrollbar">
-                
-                <div class="flex flex-col items-center gap-3 min-w-[80px] cursor-pointer group">
-                    <div class="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-green-50 group-hover:border-green-200 transition-all duration-300 transform group-hover:-translate-y-1">
-                        <i data-lucide="microscope" class="h-6 w-6 text-slate-600 group-hover:text-[#00B341]"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-600 text-center group-hover:text-[#00B341] transition-colors">Smart Screening</span>
+    <!-- Service Categories (Bento Grid) -->
+    <div class="py-16 bg-slate-50">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900">Explore Our Services</h2>
+                    <p class="text-slate-500 mt-2">Comprehensive diagnostics & advanced genetics.</p>
                 </div>
-
-                <div class="flex flex-col items-center gap-3 min-w-[80px] cursor-pointer group">
-                    <div class="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-green-50 group-hover:border-green-200 transition-all duration-300 transform group-hover:-translate-y-1">
-                        <i data-lucide="activity" class="h-6 w-6 text-slate-600 group-hover:text-[#00B341]"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-600 text-center group-hover:text-[#00B341] transition-colors">Single Marker</span>
-                </div>
-
-                <div class="flex flex-col items-center gap-3 min-w-[80px] cursor-pointer group">
-                    <div class="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-green-50 group-hover:border-green-200 transition-all duration-300 transform group-hover:-translate-y-1">
-                        <i data-lucide="pill" class="h-6 w-6 text-slate-600 group-hover:text-[#00B341]"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-600 text-center group-hover:text-[#00B341] transition-colors">Medication</span>
-                </div>
-
-                <div class="flex flex-col items-center gap-3 min-w-[80px] cursor-pointer group">
-                    <div class="h-14 w-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-green-50 group-hover:border-green-200 transition-all duration-300 transform group-hover:-translate-y-1">
-                        <i data-lucide="baby" class="h-6 w-6 text-slate-600 group-hover:text-[#00B341]"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-600 text-center group-hover:text-[#00B341] transition-colors">Amniocentesis</span>
-                </div>
+                <a href="#" class="hidden sm:flex items-center gap-2 text-[#00B341] font-semibold hover:text-green-700 transition-colors">
+                    View all services <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                </a>
             </div>
-        </div>
-    </div>
 
-    <!-- Service Categories -->
-    <div class="py-12 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-slate-900 mb-8">Our Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
                 
-                <!-- Card 1 -->
-                <div class="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-100 hover:shadow-xl hover:shadow-green-900/5 cursor-pointer transition-all group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform duration-300">
-                            <i data-lucide="test-tube-2" class="h-6 w-6"></i>
+                <!-- Card 1: Diagnostics (Hero Tile) -->
+                <div class="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-white to-blue-50 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="h-16 w-16 rounded-2xl flex items-center justify-center bg-blue-100 text-blue-600 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="test-tube-2" class="h-8 w-8"></i>
                         </div>
-                        <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">UPTO 50% OFF</span>
+                        <span class="bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide border border-red-100">UPTO 50% OFF</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-[#00B341] transition-colors">Diagnostics</h3>
-                    <p class="text-slate-500 text-xs font-medium">Fast Track & Emergency</p>
-                    <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                        <i data-lucide="chevron-right" class="h-5 w-5 text-[#00B341]"></i>
+                    <div class="max-w-md relative z-10">
+                        <h3 class="text-2xl md:text-4xl font-bold text-slate-900 mb-3 group-hover:text-blue-800 transition-colors">Diagnostics</h3>
+                        <p class="text-slate-600 text-base md:text-lg mb-6 leading-relaxed">Fast-track routine pathology and emergency testing with 100% accuracy. NABL certified labs at your doorstep.</p>
+                        <button class="flex items-center gap-2 text-blue-600 font-bold group-hover:gap-3 transition-all">
+                            Book a Test <i data-lucide="arrow-right" class="h-5 w-5"></i>
+                        </button>
                     </div>
+                    <!-- Decorative BG -->
+                    <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-blue-200/50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-100 hover:shadow-xl hover:shadow-green-900/5 cursor-pointer transition-all group">
+                <!-- Card 2: DNA Decoder -->
+                <div class="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-white to-purple-50 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 group-hover:scale-110 transition-transform duration-300">
+                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-purple-100 text-purple-600 group-hover:scale-110 transition-transform duration-500">
                             <i data-lucide="dna" class="h-6 w-6"></i>
                         </div>
-                        <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">UPTO 50% OFF</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-[#00B341] transition-colors">DNA Decoder</h3>
-                    <p class="text-slate-500 text-xs font-medium">Personalized Insights</p>
-                    <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                        <i data-lucide="chevron-right" class="h-5 w-5 text-[#00B341]"></i>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">DNA Decoder</h3>
+                    <p class="text-slate-500 text-sm mb-4">Personalized genetic insights for lifestyle & disease risk.</p>
+                    <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <i data-lucide="chevron-right" class="h-6 w-6 text-purple-600"></i>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-100 hover:shadow-xl hover:shadow-green-900/5 cursor-pointer transition-all group">
+                <!-- Card 3: MedMatch -->
+                <div class="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-white to-orange-50 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-orange-50 text-orange-600 group-hover:scale-110 transition-transform duration-300">
+                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-orange-100 text-orange-600 group-hover:scale-110 transition-transform duration-500">
                             <i data-lucide="pill" class="h-6 w-6"></i>
                         </div>
-                        <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">UPTO 50% OFF</span>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-[#00B341] transition-colors">MedMatch</h3>
-                    <p class="text-slate-500 text-xs font-medium">Smarter Med Choices</p>
-                    <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                        <i data-lucide="chevron-right" class="h-5 w-5 text-[#00B341]"></i>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">MedMatch</h3>
+                    <p class="text-slate-500 text-sm mb-4">Smarter medication choices based on your unique profile.</p>
+                    <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <i data-lucide="chevron-right" class="h-6 w-6 text-orange-600"></i>
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-100 hover:shadow-xl hover:shadow-green-900/5 cursor-pointer transition-all group">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-pink-50 text-pink-600 group-hover:scale-110 transition-transform duration-300">
-                            <i data-lucide="baby" class="h-6 w-6"></i>
+                <!-- Card 4: Fetal Medicine (Wide Bottom) -->
+                <div class="md:col-span-3 relative overflow-hidden rounded-3xl p-8 bg-gradient-to-r from-pink-50 via-white to-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="h-14 w-14 rounded-2xl flex items-center justify-center bg-pink-100 text-pink-600 group-hover:scale-110 transition-transform duration-500">
+                                    <i data-lucide="baby" class="h-7 w-7"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900">Fetal Medicine</h3>
+                            </div>
+                            <p class="text-slate-600 max-w-2xl">Advanced pregnancy care and genetic screening for the health of mother and baby. Expert consultations available.</p>
                         </div>
-                        <span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wide">UPTO 50% OFF</span>
+                        <button class="flex-shrink-0 bg-white border border-pink-200 text-pink-600 px-6 py-3 rounded-xl font-bold hover:bg-pink-600 hover:text-white transition-colors shadow-sm">
+                            Explore Care Plans
+                        </button>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-800 mb-1 group-hover:text-[#00B341] transition-colors">Fetal Medicine</h3>
-                    <p class="text-slate-500 text-xs font-medium">Pregnancy Care</p>
-                    <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                        <i data-lucide="chevron-right" class="h-5 w-5 text-[#00B341]"></i>
-                    </div>
+                    <!-- Decorative BG -->
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-pink-200/30 rounded-full blur-2xl opacity-50"></div>
                 </div>
+
             </div>
         </div>
     </div>
