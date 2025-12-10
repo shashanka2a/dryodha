@@ -112,16 +112,32 @@
                 <!-- Center Section: Nav Links (Desktop Only) -->
                 <div class="hidden xl:flex items-center gap-8">
                     <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors">About</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors">Diagnostics</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors leading-tight text-center">DNA<br>Decoder</a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors relative flex items-center gap-1">
-                        MedMatch
-                        <span class="absolute -top-3 -right-6 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
-                    </a>
-                    <a href="#" class="text-slate-600 hover:text-[#00B341] font-semibold transition-colors relative leading-tight text-center">
-                        Fetal<br>Medicine
-                        <span class="absolute -top-2 -right-8 bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
-                    </a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center gap-1 text-slate-600 hover:text-[#00B341] font-semibold transition-colors py-6">
+                            Services
+                            <i data-lucide="chevron-down" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"></i>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute top-[80%] left-1/2 -translate-x-1/2 w-64 bg-white border border-slate-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2 z-50">
+                            <a href="#" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-slate-600 hover:text-[#00B341] font-medium transition-colors">
+                                Diagnostics
+                            </a>
+                            <a href="#" class="block px-4 py-3 rounded-xl hover:bg-green-50 text-slate-600 hover:text-[#00B341] font-medium transition-colors">
+                                DNA Decoder
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-green-50 text-slate-600 hover:text-[#00B341] font-medium transition-colors">
+                                MedMatch
+                                <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
+                            </a>
+                            <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-green-50 text-slate-600 hover:text-[#00B341] font-medium transition-colors">
+                                Fetal Medicine
+                                <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">NEW</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Right Section: Search & Actions -->
@@ -179,12 +195,16 @@
                 <div class="border-t border-slate-100 my-2"></div>
 
                 <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">About</a>
-                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">Diagnostics</a>
-                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">DNA Decoder</a>
-                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">
+                
+                <!-- Mobile Services Header -->
+                <div class="px-2 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider mt-2">Services</div>
+                
+                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341] pl-4">Diagnostics</a>
+                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341] pl-4">DNA Decoder</a>
+                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341] pl-4">
                     MedMatch <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
-                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341]">
+                <a href="#" class="flex items-center justify-between px-2 py-2 text-base font-semibold text-slate-700 hover:text-[#00B341] pl-4">
                     Fetal Medicine <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
             </div>
@@ -265,6 +285,7 @@
 
     <!-- Service Categories (Bento Grid) -->
     <div class="py-16 bg-slate-50">
+        <!-- ... existing service categories content ... -->
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-end justify-between mb-8">
                 <div>
@@ -351,73 +372,107 @@
     </div>
 
     <!-- Best Sellers -->
-    <div class="py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold text-slate-900">Best Sellers</h2>
-                <a href="#" class="text-sm font-bold text-[#00B341] hover:underline">View All</a>
+    <div class="py-20 bg-gradient-to-r from-emerald-900 to-green-900 relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+             <div class="absolute top-0 right-0 w-96 h-96 bg-[#00B341] opacity-10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+             <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-400 opacity-5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-green-300 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i data-lucide="trending-up" class="h-3 w-3"></i> Top Choice
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white">Best Sellers</h2>
+                    <p class="text-emerald-100 mt-2 text-lg">Most trusted packages chosen by over 2M+ patients.</p>
+                </div>
+                <a href="#" class="hidden sm:flex px-6 py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white hover:text-green-900 transition-all backdrop-blur-md">
+                    View All
+                </a>
             </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <!-- Product 1 -->
-                <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
+                <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-2xl hover:shadow-emerald-900/20 transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-1">
                     <div class="mb-4">
-                        <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <i data-lucide="activity" class="h-5 w-5"></i>
+                        <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-[#00B341] mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="activity" class="h-6 w-6"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 leading-snug mb-1">Diabetic Profile Basic</h3>
-                        <p class="text-[10px] text-slate-400">Includes 3 Tests • Fasting Required</p>
+                        <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Diabetic Profile Basic</h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">3 Tests</span>
+                            <span class="bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded">Fasting</span>
+                        </div>
                     </div>
                     <div class="mt-auto pt-4 border-t border-slate-50">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex flex-col">
                                 <span class="text-xs text-slate-400 line-through">₹1,200</span>
-                                <span class="text-lg font-bold text-slate-900">₹649</span>
+                                <span class="text-2xl font-bold text-[#00B341]">₹649</span>
                             </div>
+                            <div class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded">-46%</div>
                         </div>
-                        <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
+                        <button class="w-full py-3 rounded-xl bg-[#00B341] text-white font-bold hover:bg-green-700 transition-colors text-sm shadow-lg shadow-green-200/50">Add to Cart</button>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
-                <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
+                <!-- Product 2 (Featured) -->
+                <div class="bg-white rounded-2xl border-2 border-[#00B341] p-5 hover:shadow-2xl hover:shadow-emerald-900/20 transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-1 scale-105 z-10">
+                    <div class="absolute top-0 right-0 bg-[#00B341] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl">MOST POPULAR</div>
                     <div class="mb-4">
-                        <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <i data-lucide="activity" class="h-5 w-5"></i>
+                        <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-[#00B341] mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="baby" class="h-6 w-6"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 leading-snug mb-1">Pregnancy Wish Dating Panel</h3>
-                        <p class="text-[10px] text-slate-400">Includes 8 Tests • Report in 24hrs</p>
+                        <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Pregnancy Wish Dating</h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">8 Tests</span>
+                            <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded">24hrs Report</span>
+                        </div>
                     </div>
                     <div class="mt-auto pt-4 border-t border-slate-50">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex flex-col">
                                 <span class="text-xs text-slate-400 line-through">₹3,000</span>
-                                <span class="text-lg font-bold text-slate-900">₹1,499</span>
+                                <span class="text-2xl font-bold text-[#00B341]">₹1,499</span>
                             </div>
+                            <div class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded">-50%</div>
                         </div>
-                        <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
+                        <button class="w-full py-3 rounded-xl bg-[#00B341] text-white font-bold hover:bg-green-700 transition-colors text-sm shadow-lg shadow-green-200/50">Add to Cart</button>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-pink-100 text-pink-600 text-[9px] font-bold px-2 py-1 rounded-bl-lg">COUPLE</div>
+                <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-2xl hover:shadow-emerald-900/20 transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-1">
+                    <div class="absolute top-0 right-0 bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-bl-lg">COUPLE PACK</div>
                     <div class="mb-4">
-                        <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                            <i data-lucide="activity" class="h-5 w-5"></i>
+                        <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-[#00B341] mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="heart-handshake" class="h-6 w-6"></i>
                         </div>
-                        <h3 class="font-bold text-slate-800 leading-snug mb-1">Couple Compatibility North</h3>
-                        <p class="text-[10px] text-slate-400">Genetic Screening • Expert Counseling</p>
+                        <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Couple Compatibility</h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">Genetic Screen</span>
+                            <span class="bg-purple-50 text-purple-600 text-[10px] font-bold px-2 py-1 rounded">Counseling</span>
+                        </div>
                     </div>
                     <div class="mt-auto pt-4 border-t border-slate-50">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex flex-col">
                                 <span class="text-xs text-slate-400 line-through">₹7,000</span>
-                                <span class="text-lg font-bold text-slate-900">₹3,499</span>
+                                <span class="text-2xl font-bold text-[#00B341]">₹3,499</span>
                             </div>
+                            <div class="bg-green-50 text-green-700 text-xs font-bold px-2 py-1 rounded">-50%</div>
                         </div>
-                        <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
+                        <button class="w-full py-3 rounded-xl bg-[#00B341] text-white font-bold hover:bg-green-700 transition-colors text-sm shadow-lg shadow-green-200/50">Add to Cart</button>
                     </div>
                 </div>
+            </div>
+            
+            <div class="mt-8 text-center sm:hidden">
+                 <a href="#" class="inline-block px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white hover:text-green-900 transition-all backdrop-blur-md">
+                    View All Packages
+                </a>
             </div>
         </div>
     </div>
@@ -502,14 +557,8 @@
         </div>
     </div>
 
-    <!-- Membership Banner -->
-    <div class="py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-                <img src="image_ee1af5.jpg" alt="Mr Yoda Club Membership" class="w-full h-auto object-cover min-h-[300px]" onerror="this.style.display='none'">
-            </div>
-        </div>
-    </div>
+    <!-- Membership Banner (Removed as per user request to close gap) -->
+    <!-- The "gap" was identified as the Membership Banner which was failing to load or empty -->
 
     <!-- NutriGenomics Banner -->
     <div class="bg-green-50 py-16">
@@ -853,11 +902,9 @@
         </div>
     </div>
 
-    <!-- Bottom Banner (Desktop) -->
-    <div class="py-8 bg-green-900 text-center text-white hidden lg:block">
-        <h3 class="text-xl font-bold mb-2">Limitless savings with Membership</h3>
-        <p class="opacity-80 mb-4">Just ₹999 for 365 days</p>
-        <button class="bg-white text-green-900 px-8 py-2 rounded-full font-bold text-sm uppercase transform hover:scale-105 transition-transform">Sign Up</button>
+    <!-- Bottom Banner / Home Before Membership -->
+    <div class="w-full hidden lg:block">
+        <img src="https://mryoda-prod.s3.ap-south-1.amazonaws.com/web/home_before_membership.jpg-1757920022938" alt="Home Before Membership" class="w-full h-auto object-cover">
     </div>
 
     <!-- Sticky Mobile Bottom Bar -->
