@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. Yoda Diagnostics - India's Advanced Lab</title>
     
-    <!-- Custom Favicon (Recreated Logo) -->
+    <!-- Custom Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%2300B341'/><path d='M50 25C54 25 57 28 57 32C57 36 54 39 50 39C46 39 43 36 43 32C43 28 46 25 50 25ZM50 45C50 45 35 45 25 30C25 30 25 65 48 80L50 82L52 80C75 65 75 30 75 30C65 45 50 45 50 45Z' fill='white'/></svg>">
     
-    <!-- Tailwind CSS --> 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
@@ -32,25 +32,19 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        .animate-blob {
-            animation: blob 7s infinite;
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
         
-        /* FAQ Animation Styles */
+        /* FAQ Animation */
         .faq-content {
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
             opacity: 0;
             overflow: hidden;
@@ -59,11 +53,15 @@
             opacity: 1;
         }
 
-        /* Active Card State for Bento Grid */
+        /* Active Card State */
         .bento-card.active {
             border-color: #00B341;
-            background: #F0FDF4; /* green-50 */
+            background: #F0FDF4;
             box-shadow: 0 0 0 2px #00B341;
+        }
+        /* Mobile Scroll Snap alignment */
+        .scroll-mt-header {
+            scroll-margin-top: 100px;
         }
     </style>
     
@@ -80,9 +78,7 @@
                     },
                     boxShadow: {
                         'glow': '0 0 20px -5px rgba(0, 179, 65, 0.3)',
-                        'glow-lg': '0 10px 40px -10px rgba(0, 179, 65, 0.4)',
                         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
-                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01)',
                     }
                 }
             }
@@ -97,97 +93,74 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300 supports-[backdrop-filter]:bg-white/60">
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 transition-all duration-300">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
-                <!-- Left Section: Logo & Location (Desktop) -->
-                <div class="flex items-center gap-8">
-                    <!-- Logo -->
+                <!-- Left Section -->
+                <div class="flex items-center gap-4 lg:gap-8">
                     <a href="#" class="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
-                        <!-- Custom SVG Logo -->
-                        <div class="bg-brand-green p-2 rounded-xl shadow-glow group-hover:shadow-glow-lg transition-all duration-300">
-                            <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Head -->
+                        <div class="bg-brand-green p-2 rounded-xl shadow-glow group-hover:shadow-lg transition-all duration-300">
+                            <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="50" cy="32" r="10" fill="white"/>
-                                <!-- Leaves/Body -->
                                 <path d="M50 45C50 45 35 45 25 30C25 30 25 65 48 80L50 82L52 80C75 65 75 30 75 30C65 45 50 45 50 45Z" fill="white"/>
-                                <!-- Central Stem Line (optional for detail) -->
                                 <path d="M50 45V82" stroke="#00B341" stroke-width="4" stroke-linecap="round"/>
                             </svg>
                         </div>
                         <div class="flex flex-col justify-center">
-                            <span class="font-extrabold text-2xl text-slate-900 tracking-tight leading-none group-hover:text-brand-green transition-colors">Yoda</span>
-                            <span class="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase">DIAGNOSTICS</span>
+                            <span class="font-extrabold text-xl lg:text-2xl text-slate-900 tracking-tight leading-none group-hover:text-brand-green transition-colors">Yoda</span>
+                            <span class="text-[9px] lg:text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase">DIAGNOSTICS</span>
                         </div>
                     </a>
                     
-                    <!-- Location Selector -->
-                    <div class="hidden xl:flex items-center gap-2 text-sm text-slate-700 bg-slate-100/50 hover:bg-white border border-transparent hover:border-slate-200 px-4 py-2 rounded-full cursor-pointer transition-all duration-300 shadow-sm hover:shadow">
+                    <!-- Location -->
+                    <div class="hidden xl:flex items-center gap-2 text-sm text-slate-700 bg-slate-100/50 hover:bg-white border border-transparent hover:border-slate-200 px-4 py-2 rounded-full cursor-pointer transition-all duration-300 shadow-sm">
                         <i data-lucide="map-pin" class="h-4 w-4 text-brand-green"></i>
                         <span class="font-semibold">Hyderabad</span>
                         <i data-lucide="chevron-down" class="h-3 w-3 text-slate-400"></i>
                     </div>
                 </div>
 
-                <!-- Center Section: Nav Links (Desktop Only) -->
-                <div class="hidden xl:flex items-center gap-10">
-                    <a href="#" class="text-slate-600 hover:text-brand-green font-semibold text-sm transition-colors tracking-wide">About</a>
+                <!-- Desktop Nav -->
+                <div class="hidden xl:flex items-center gap-8">
+                    <a href="#" class="text-slate-600 hover:text-brand-green font-semibold text-sm transition-colors">About</a>
                     
-                    <!-- Services Dropdown -->
                     <div class="relative group">
                         <button class="flex items-center gap-1 text-slate-600 hover:text-brand-green font-semibold text-sm transition-colors py-6">
                             Services
                             <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 opacity-60"></i>
                         </button>
-                        
-                        <!-- Dropdown Menu -->
-                        <div class="absolute top-[85%] left-1/2 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl border border-slate-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2 z-50 ring-1 ring-slate-900/5">
-                            <a href="javascript:void(0)" onclick="switchService('diagnostics')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 hover:text-brand-green font-medium transition-colors">
-                                Diagnostics
-                            </a>
-                            <a href="javascript:void(0)" onclick="switchService('dna-decoder')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 hover:text-brand-green font-medium transition-colors">
-                                DNA Decoder
-                            </a>
-                            <a href="javascript:void(0)" onclick="switchService('medmatch')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 hover:text-brand-green font-medium transition-colors">
-                                MedMatch
-                                <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold shadow-sm tracking-wide">NEW</span>
-                            </a>
-                            <a href="javascript:void(0)" onclick="switchService('fetal-medicine')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 hover:text-brand-green font-medium transition-colors">
-                                Fetal Medicine
-                                <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold shadow-sm tracking-wide">NEW</span>
-                            </a>
+                        <div class="absolute top-[85%] left-1/2 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl border border-slate-100 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2 z-50">
+                            <a href="javascript:void(0)" onclick="switchService('diagnostics')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 font-medium transition-colors">Diagnostics</a>
+                            <a href="javascript:void(0)" onclick="switchService('dna-decoder')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 font-medium transition-colors">DNA Decoder</a>
+                            <a href="javascript:void(0)" onclick="switchService('medmatch')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 font-medium transition-colors">MedMatch</a>
+                            <a href="javascript:void(0)" onclick="switchService('fetal-medicine')" class="block px-4 py-3 rounded-xl hover:bg-brand-light text-slate-700 font-medium transition-colors">Fetal Medicine</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Section: Search & Actions -->
+                <!-- Right Section -->
                 <div class="flex items-center gap-3 sm:gap-6">
-                    <!-- Search Bar (Desktop Only) -->
                     <div class="relative hidden xl:block w-72 group">
-                        <input type="text" placeholder="Search symptoms, tests..." class="w-full bg-slate-50/50 border border-slate-200 rounded-full pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all placeholder:text-slate-400 font-medium group-hover:bg-white">
-                        <i data-lucide="search" class="absolute left-4 top-3 h-4 w-4 text-slate-400 group-focus-within:text-brand-green transition-colors"></i>
+                        <input type="text" placeholder="Search tests..." class="w-full bg-slate-50/50 border border-slate-200 rounded-full pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all">
+                        <i data-lucide="search" class="absolute left-4 top-3 h-4 w-4 text-slate-400"></i>
                     </div>
                     
-                    <!-- Mobile Actions Group -->
-                    <div class="flex items-center gap-4">
-                        <!-- Cart -->
+                    <div class="flex items-center gap-3 lg:gap-4">
                         <button class="text-slate-600 hover:text-brand-green transition-colors relative p-1.5 hover:bg-brand-light rounded-full">
                             <i data-lucide="shopping-cart" class="h-6 w-6"></i>
-                            <span class="absolute -top-0.5 -right-0.5 bg-gradient-to-r from-red-500 to-pink-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                            <span class="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border-2 border-white">0</span>
                         </button>
                         
-                        <!-- Login Button -->
-                        <button class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-slate-900/20 transform hover:-translate-y-0.5 font-bold text-sm tracking-wide">
+                        <button class="bg-slate-900 hover:bg-slate-800 text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full transition-all hover:shadow-lg transform hover:-translate-y-0.5 font-bold text-xs lg:text-sm">
                             <span class="hidden sm:inline">Login / Sign Up</span>
                             <span class="sm:hidden">Login</span>
                         </button>
 
-                        <!-- Hamburger Menu (Mobile Only) -->
                         <div class="xl:hidden flex items-center">
                             <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 p-1">
-                                <i data-lucide="menu" class="h-7 w-7 transition-transform duration-300" id="menu-icon"></i>
-                                <i data-lucide="x" class="h-7 w-7 hidden transition-transform duration-300" id="close-icon"></i>
+                                <i data-lucide="menu" class="h-7 w-7" id="menu-icon"></i>
+                                <i data-lucide="x" class="h-7 w-7 hidden" id="close-icon"></i>
                             </button>
                         </div>
                     </div>
@@ -195,396 +168,275 @@
             </div>
         </div>
 
-        <!-- Mobile Nav Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden xl:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute w-full shadow-2xl h-screen overflow-y-auto pb-20 transition-all duration-300 ease-in-out z-40">
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 absolute top-full left-0 w-full shadow-2xl h-[calc(100vh-80px)] overflow-y-auto pb-20 transition-all duration-300 z-40">
             <div class="px-4 pt-4 pb-6 space-y-4">
-                <!-- Mobile Search -->
                 <div class="mb-6">
                     <div class="relative">
-                        <input type="text" placeholder="Search symptoms, tests, packages" class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20">
+                        <input type="text" placeholder="Search tests..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-brand-green">
                         <i data-lucide="search" class="absolute left-3 top-3.5 h-4 w-4 text-slate-400"></i>
                     </div>
                 </div>
                 
-                <!-- Mobile Location -->
                 <div class="flex items-center gap-2 text-sm text-slate-700 bg-slate-100 px-4 py-3 rounded-xl">
                     <i data-lucide="map-pin" class="h-4 w-4 text-brand-green"></i>
                     <span class="font-medium">Hyderabad</span>
-                    <i data-lucide="chevron-down" class="h-3 w-3 text-slate-400 ml-auto"></i>
                 </div>
 
                 <div class="border-t border-slate-100 my-2"></div>
-
-                <a href="#" class="block px-2 py-2 text-base font-semibold text-slate-700 hover:text-brand-green">About</a>
+                <div class="px-2 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Services</div>
                 
-                <!-- Mobile Services Header -->
-                <div class="px-2 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider mt-2">Services</div>
-                
-                <a href="javascript:void(0)" onclick="switchService('diagnostics'); toggleMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-600 hover:text-brand-green hover:bg-brand-light transition-colors">Diagnostics</a>
-                <a href="javascript:void(0)" onclick="switchService('dna-decoder'); toggleMobileMenu()" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-600 hover:text-brand-green hover:bg-brand-light transition-colors">DNA Decoder</a>
-                <a href="javascript:void(0)" onclick="switchService('medmatch'); toggleMobileMenu()" class="flex items-center justify-between px-4 py-2.5 rounded-lg text-base font-medium text-slate-600 hover:text-brand-green hover:bg-brand-light transition-colors">
+                <a href="javascript:void(0)" onclick="switchService('diagnostics'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-base font-medium text-slate-600 hover:bg-brand-light">Diagnostics</a>
+                <a href="javascript:void(0)" onclick="switchService('dna-decoder'); toggleMobileMenu()" class="block px-4 py-3 rounded-lg text-base font-medium text-slate-600 hover:bg-brand-light">DNA Decoder</a>
+                <a href="javascript:void(0)" onclick="switchService('medmatch'); toggleMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium text-slate-600 hover:bg-brand-light">
                     MedMatch <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
-                <a href="javascript:void(0)" onclick="switchService('fetal-medicine'); toggleMobileMenu()" class="flex items-center justify-between px-4 py-2.5 rounded-lg text-base font-medium text-slate-600 hover:text-brand-green hover:bg-brand-light transition-colors">
+                <a href="javascript:void(0)" onclick="switchService('fetal-medicine'); toggleMobileMenu()" class="flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium text-slate-600 hover:bg-brand-light">
                     Fetal Medicine <span class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">NEW</span>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Static - Always Visible) -->
+    <!-- Hero Section -->
     <div class="relative overflow-hidden bg-[#f8fafc] pt-10 pb-16 lg:pt-20 lg:pb-32 min-h-screen flex items-center">
-        <!-- Abstract Background -->
-        <div class="absolute inset-0 z-0">
+        <!-- Abstract BG -->
+        <div class="absolute inset-0 z-0 pointer-events-none">
             <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-green-100/40 to-transparent rounded-full blur-[100px] -translate-y-1/4 translate-x-1/4"></div>
             <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-emerald-100/40 to-transparent rounded-full blur-[80px] translate-y-1/4 -translate-x-1/4"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-                
                 <div class="lg:col-span-6 text-center lg:text-left">
-                    
-                    <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6 drop-shadow-sm">
+                    <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
                         India's Advanced <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-teal-500">
-                            Diagnostics & Genetics
-                        </span> Lab
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-teal-500">Diagnostics & Genetics</span> Lab
                     </h1>
-                    
                     <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
                         From routine diagnostics to advanced genetic decoding, we bring precise, personalized healthcare to your doorstep.
                     </p>
-
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12">
-                        <button onclick="switchService('diagnostics'); document.getElementById('services-grid').scrollIntoView()" class="bg-brand-green hover:bg-brand-dark text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-glow-lg transition-all transform hover:-translate-y-1 hover:shadow-green-500/40 flex items-center justify-center gap-2 min-w-[200px]">
+                        <button onclick="switchService('diagnostics');" class="bg-brand-green hover:bg-brand-dark text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-glow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[200px]">
                             Explore Services <i data-lucide="arrow-right" class="h-5 w-5"></i>
                         </button>
-                        <button class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 px-8 py-4 rounded-2xl font-bold text-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[200px] group">
-                            <i data-lucide="file-text" class="h-5 w-5 text-slate-400 group-hover:text-brand-green transition-colors"></i> Upload Prescription
+                        <button class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 px-8 py-4 rounded-2xl font-bold text-lg shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 min-w-[200px]">
+                            <i data-lucide="file-text" class="h-5 w-5 text-slate-400"></i> Upload Prescription
                         </button>
                     </div>
-
-                    <div class="flex items-center justify-center lg:justify-start gap-8 text-sm font-medium text-slate-500">
-                        <div class="flex items-center gap-3 bg-white/60 px-4 py-2 rounded-xl border border-white/50 shadow-sm backdrop-blur-sm">
-                            <div class="bg-brand-light p-2 rounded-lg text-brand-green">
-                                <i data-lucide="clock" class="h-5 w-5"></i>
-                            </div>
-                            <span>Reports in 6-24 Hrs</span>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 text-sm font-medium text-slate-500">
+                        <div class="flex items-center gap-2 bg-white/60 px-4 py-2 rounded-xl border border-white/50 backdrop-blur-sm">
+                            <i data-lucide="clock" class="h-5 w-5 text-brand-green"></i> <span>Reports in 6-24 Hrs</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-white/60 px-4 py-2 rounded-xl border border-white/50 shadow-sm backdrop-blur-sm">
-                            <div class="bg-brand-light p-2 rounded-lg text-brand-green">
-                                <i data-lucide="shield-check" class="h-5 w-5"></i>
-                            </div>
-                            <span>100% Accurate AI+Human Review</span>
+                        <div class="flex items-center gap-2 bg-white/60 px-4 py-2 rounded-xl border border-white/50 backdrop-blur-sm">
+                            <i data-lucide="shield-check" class="h-5 w-5 text-brand-green"></i> <span>100% Accurate AI+Human Review</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Hero Visual -->
                 <div class="lg:col-span-6 mt-16 lg:mt-0 relative hidden lg:block">
-                    <div class="relative w-full max-w-lg mx-auto group perspective-1000">
-                        <!-- Colored Shadow/Glow behind image -->
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-brand-green/20 to-teal-400/20 rounded-full blur-[60px] -z-10"></div>
-                        
-                        <!-- Main Image/Video Container -->
-                        <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-900/10 border-[6px] border-white transform rotate-2 group-hover:rotate-0 transition-all duration-700 ease-out aspect-[4/5] hover:shadow-glow-lg">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <div class="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-[6px] border-white aspect-[4/5]">
+                            <video autoplay loop muted playsinline class="w-full h-full object-cover">
                                 <source src="https://yodalifeline-prod.s3.ap-south-1.amazonaws.com/why-Mr-Yoda.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
                             </video>
-                            
-                            <!-- Overlay Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Service Controller (Bento Grid) -->
+    <!-- Service Controller (2x2 Toggle Grid) -->
     <div class="py-24 bg-white relative" id="services-grid">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-end justify-between mb-10">
-                <div>
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">Explore Our Services</h2>
-                    <p class="text-slate-500 mt-3 text-lg">Select a service to view specialized packages.</p>
-                </div>
+        <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:text-left mb-10">
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900">Explore Our Services</h2>
+                <p class="text-slate-500 mt-3 text-lg">Select a category below to view packages.</p>
             </div>
 
-            <!-- Bento Grid - Navigation Controllers -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto">
-                
-                <!-- Card 1: Diagnostics (Controller) -->
-                <div id="btn-diagnostics" onclick="switchService('diagnostics')" class="bento-card active md:col-span-2 md:row-span-2 relative overflow-hidden rounded-[2rem] p-10 bg-gradient-to-br from-sky-50 via-white to-white border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 group cursor-pointer flex flex-col">
-                    <div>
-                        <div class="flex justify-between items-start mb-8">
-                            <div class="h-16 w-16 rounded-2xl flex items-center justify-center bg-sky-100 text-sky-600 group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                                <i data-lucide="test-tube-2" class="h-8 w-8"></i>
-                            </div>
-                            <span class="bg-white/80 backdrop-blur-sm text-red-600 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide border border-red-100 shadow-sm">UPTO 50% OFF</span>
-                        </div>
-                        <div class="max-w-md relative z-10">
-                            <h3 class="text-3xl font-extrabold text-slate-900 mb-3 group-hover:text-sky-700 transition-colors">Diagnostics</h3>
-                            <p class="text-slate-600 text-lg mb-8 leading-relaxed">Fast-track routine pathology and emergency testing with 100% accuracy. NABL certified labs at your doorstep.</p>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Diagnostics -->
+                <div id="btn-diagnostics" onclick="switchService('diagnostics')" class="bento-card active relative overflow-hidden rounded-2xl p-6 border-2 border-slate-100 hover:border-brand-green/50 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer group flex items-center gap-6">
+                    <div class="h-16 w-16 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <i data-lucide="test-tube-2" class="h-8 w-8"></i>
                     </div>
-                    <div class="mt-auto relative z-10">
-                        <div class="flex items-center gap-2 text-sky-600 font-bold group-hover:gap-3 transition-all">
-                            View Packages <i data-lucide="arrow-down" class="h-5 w-5"></i>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="text-xl font-bold text-slate-900">Diagnostics</h3>
+                            <div class="w-4 h-4 rounded-full border-2 border-slate-200 indicator-dot transition-colors"></div>
                         </div>
-                    </div>
-                    <div class="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-sky-100/50 to-transparent rounded-tl-[100px] opacity-50 group-hover:scale-110 transition-transform duration-700 pointer-events-none"></div>
-                </div>
-
-                <!-- Card 2: DNA Decoder (Controller) -->
-                <div id="btn-dna-decoder" onclick="switchService('dna-decoder')" class="bento-card relative overflow-hidden rounded-[2rem] p-6 lg:p-8 bg-gradient-to-br from-purple-50 via-white to-white border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 group cursor-pointer min-h-[320px] flex flex-col">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-14 w-14 rounded-2xl flex items-center justify-center bg-purple-100 text-purple-600 group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                                <i data-lucide="dna" class="h-7 w-7"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">DNA Decoder</h3>
-                        <p class="text-slate-500 text-sm mb-2 leading-relaxed">Personalized genetic insights for lifestyle & disease risk.</p>
-                    </div>
-                    <div class="mt-auto">
-                        <div class="flex items-center gap-2 text-purple-600 font-bold text-sm group-hover:gap-3 transition-all">
-                            View Details <i data-lucide="arrow-down" class="h-4 w-4"></i>
-                        </div>
+                        <p class="text-slate-500 text-sm leading-snug">Fast-track routine pathology & emergency testing.</p>
                     </div>
                 </div>
 
-                <!-- Card 3: MedMatch (Controller) -->
-                <div id="btn-medmatch" onclick="switchService('medmatch')" class="bento-card relative overflow-hidden rounded-[2rem] p-6 lg:p-8 bg-gradient-to-br from-orange-50 via-white to-white border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 group cursor-pointer min-h-[320px] flex flex-col">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="h-14 w-14 rounded-2xl flex items-center justify-center bg-orange-100 text-orange-600 group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                                <i data-lucide="pill" class="h-7 w-7"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">MedMatch</h3>
-                        <p class="text-slate-500 text-sm mb-2 leading-relaxed">Smarter medication choices based on your unique profile.</p>
+                <!-- DNA Decoder -->
+                <div id="btn-dna-decoder" onclick="switchService('dna-decoder')" class="bento-card relative overflow-hidden rounded-2xl p-6 border-2 border-slate-100 hover:border-brand-green/50 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer group flex items-center gap-6">
+                    <div class="h-16 w-16 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <i data-lucide="dna" class="h-8 w-8"></i>
                     </div>
-                    <div class="mt-auto">
-                        <div class="flex items-center gap-2 text-orange-600 font-bold text-sm group-hover:gap-3 transition-all">
-                            View Details <i data-lucide="arrow-down" class="h-4 w-4"></i>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="text-xl font-bold text-slate-900">DNA Decoder</h3>
+                            <div class="w-4 h-4 rounded-full border-2 border-slate-200 indicator-dot transition-colors"></div>
                         </div>
+                        <p class="text-slate-500 text-sm leading-snug">Personalized genetic insights for lifestyle risk.</p>
                     </div>
                 </div>
 
-                <!-- Card 4: Fetal Medicine (Controller) -->
-                <div id="btn-fetal-medicine" onclick="switchService('fetal-medicine')" class="bento-card md:col-span-3 relative overflow-hidden rounded-[2rem] p-10 bg-gradient-to-r from-pink-50 via-white to-white border border-slate-100 shadow-card hover:shadow-card-hover transition-all duration-300 group cursor-pointer">
-                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                        <div class="flex-1 relative z-10">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="h-14 w-14 rounded-2xl flex items-center justify-center bg-pink-100 text-pink-600 group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                                    <i data-lucide="baby" class="h-7 w-7"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-slate-900">Fetal Medicine</h3>
-                            </div>
-                            <p class="text-slate-600 max-w-2xl text-lg">Advanced pregnancy care and genetic screening for the health of mother and baby.</p>
-                        </div>
-                        <div class="flex-shrink-0 bg-white border border-pink-200 text-pink-600 px-8 py-3.5 rounded-xl font-bold group-hover:bg-pink-600 group-hover:text-white transition-all shadow-sm group-hover:shadow-md relative z-10 flex items-center gap-2">
-                            View Plans <i data-lucide="arrow-down" class="h-4 w-4"></i>
-                        </div>
+                <!-- MedMatch -->
+                <div id="btn-medmatch" onclick="switchService('medmatch')" class="bento-card relative overflow-hidden rounded-2xl p-6 border-2 border-slate-100 hover:border-brand-green/50 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer group flex items-center gap-6">
+                    <div class="h-16 w-16 rounded-xl flex items-center justify-center bg-orange-50 text-orange-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <i data-lucide="pill" class="h-8 w-8"></i>
                     </div>
-                    <!-- Decorative BG -->
-                    <div class="absolute -top-10 -left-10 w-64 h-64 bg-pink-100/40 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700"></div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="text-xl font-bold text-slate-900">MedMatch</h3>
+                            <div class="w-4 h-4 rounded-full border-2 border-slate-200 indicator-dot transition-colors"></div>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-snug">Smarter medication choices based on your profile.</p>
+                    </div>
                 </div>
 
+                <!-- Fetal Medicine -->
+                <div id="btn-fetal-medicine" onclick="switchService('fetal-medicine')" class="bento-card relative overflow-hidden rounded-2xl p-6 border-2 border-slate-100 hover:border-brand-green/50 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer group flex items-center gap-6">
+                    <div class="h-16 w-16 rounded-xl flex items-center justify-center bg-pink-50 text-pink-600 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <i data-lucide="baby" class="h-8 w-8"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="text-xl font-bold text-slate-900">Fetal Medicine</h3>
+                            <div class="w-4 h-4 rounded-full border-2 border-slate-200 indicator-dot transition-colors"></div>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-snug">Advanced pregnancy care & genetic screening.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Styles for Active State -->
+    <style>
+        .bento-card.active .indicator-dot {
+            background-color: #00B341;
+            border-color: #00B341;
+        }
+        .bento-card.active {
+            border-color: #00B341;
+            background-color: #f0fdf4;
+            box-shadow: 0 4px 6px -1px rgba(0, 179, 65, 0.1);
+        }
+        /* Mobile scroll offset to handle sticky headers */
+        .service-content {
+            scroll-margin-top: 120px;
+        }
+    </style>
 
     <!-- DYNAMIC CONTENT CONTAINER -->
-    <div id="dynamic-content-container" class="transition-all duration-500">
+    <div id="dynamic-content-container" class="min-h-[500px]">
         
-        <!-- SECTION: DIAGNOSTICS (Best Sellers + Smart Choices) -->
-        <div id="content-diagnostics" class="service-content">
-            <!-- Best Sellers (Premium Style) -->
+        <!-- SECTION: DIAGNOSTICS (Default) -->
+        <div id="content-diagnostics" class="service-content animate-fade-in scroll-mt-header">
+            <!-- Best Sellers -->
             <div class="py-24 bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-950 relative overflow-hidden text-white">
-                <!-- Decorative Background Elements -->
-                <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                     <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-green/20 opacity-30 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2"></div>
-                     <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-emerald-400/10 opacity-30 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2"></div>
-                     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-                </div>
-
                 <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="flex justify-between items-end mb-12">
                         <div>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-4 shadow-lg">
-                                <i data-lucide="trending-up" class="h-3 w-3"></i> Top Choice
-                            </div>
                             <h2 class="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-200">Best Sellers</h2>
                             <p class="text-emerald-100/80 mt-3 text-lg font-medium">Most trusted packages chosen by over 2M+ patients.</p>
                         </div>
-                        <a href="#" class="hidden sm:flex px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white hover:text-green-900 transition-all backdrop-blur-md shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                            View All
-                        </a>
+                        <a href="#" class="hidden sm:flex px-8 py-3 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white hover:text-green-900 transition-all backdrop-blur-md">View All</a>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
                         <!-- Product 1 -->
-                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-500 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-2 border border-white/10">
+                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden text-slate-900">
                             <div class="mb-6">
-                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
                                     <i data-lucide="activity" class="h-7 w-7"></i>
                                 </div>
                                 <h3 class="font-bold text-2xl text-slate-800 leading-snug mb-2">Diabetic Profile Basic</h3>
-                                <div class="flex items-center gap-2 mt-3">
-                                    <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">3 Tests</span>
-                                    <span class="bg-orange-50 text-orange-600 text-xs font-bold px-2.5 py-1 rounded-md">Fasting</span>
-                                </div>
+                                <div class="flex gap-2"><span class="bg-orange-50 text-orange-600 text-xs font-bold px-2 py-1 rounded">Fasting Required</span></div>
                             </div>
                             <div class="mt-auto pt-6 border-t border-slate-100">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm text-slate-400 line-through font-medium">₹1,200</span>
-                                        <span class="text-3xl font-extrabold text-emerald-600">₹649</span>
-                                    </div>
-                                    <div class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full">-46% OFF</div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-3xl font-extrabold text-emerald-600">₹649</span>
+                                    <span class="text-sm text-slate-400 line-through">₹1,200</span>
                                 </div>
-                                <button class="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-brand-green transition-all duration-300 shadow-lg shadow-slate-200">Add to Cart</button>
+                                <button class="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-brand-green transition-all shadow-lg">Add to Cart</button>
                             </div>
                         </div>
-
-                        <!-- Product 2 (Featured) -->
-                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl hover:shadow-emerald-500/30 transition-all duration-500 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-2 scale-[1.03] z-10 border-2 border-brand-green shadow-xl">
-                            <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider shadow-sm">Most Popular</div>
+                        <!-- Product 2 -->
+                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden text-slate-900 border-2 border-brand-green shadow-xl transform scale-[1.03] z-10">
+                            <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider">Most Popular</div>
                             <div class="mb-6">
-                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
                                     <i data-lucide="baby" class="h-7 w-7"></i>
                                 </div>
                                 <h3 class="font-bold text-2xl text-slate-800 leading-snug mb-2">Pregnancy Wish Dating</h3>
-                                <div class="flex items-center gap-2 mt-3">
-                                    <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">8 Tests</span>
-                                    <span class="bg-blue-50 text-blue-600 text-xs font-bold px-2.5 py-1 rounded-md">24hrs Report</span>
-                                </div>
+                                <div class="flex gap-2"><span class="bg-blue-50 text-blue-600 text-xs font-bold px-2 py-1 rounded">24hrs Report</span></div>
                             </div>
                             <div class="mt-auto pt-6 border-t border-slate-100">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm text-slate-400 line-through font-medium">₹3,000</span>
-                                        <span class="text-3xl font-extrabold text-emerald-600">₹1,499</span>
-                                    </div>
-                                    <div class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full">-50% OFF</div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-3xl font-extrabold text-emerald-600">₹1,499</span>
+                                    <span class="text-sm text-slate-400 line-through">₹3,000</span>
                                 </div>
-                                <button class="w-full py-3.5 rounded-xl bg-brand-green text-white font-bold hover:bg-brand-dark transition-all duration-300 shadow-glow-lg">Add to Cart</button>
+                                <button class="w-full py-3.5 rounded-xl bg-brand-green text-white font-bold hover:bg-brand-dark transition-all shadow-lg">Add to Cart</button>
                             </div>
                         </div>
-
                         <!-- Product 3 -->
-                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-500 group cursor-pointer flex flex-col h-full relative overflow-hidden transform hover:-translate-y-2 border border-white/10">
-                            <div class="absolute top-0 right-0 bg-pink-500 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider shadow-sm">Couple Pack</div>
+                        <div class="bg-white rounded-[2rem] p-6 hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden text-slate-900">
+                            <div class="absolute top-0 right-0 bg-pink-500 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider">Couple Pack</div>
                             <div class="mb-6">
-                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                <div class="h-14 w-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
                                     <i data-lucide="heart-handshake" class="h-7 w-7"></i>
                                 </div>
                                 <h3 class="font-bold text-2xl text-slate-800 leading-snug mb-2">Couple Compatibility</h3>
-                                <div class="flex items-center gap-2 mt-3">
-                                    <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">Genetic Screen</span>
-                                    <span class="bg-purple-50 text-purple-600 text-xs font-bold px-2.5 py-1 rounded-md">Counseling</span>
-                                </div>
+                                <div class="flex gap-2"><span class="bg-purple-50 text-purple-600 text-xs font-bold px-2 py-1 rounded">Genetic Screen</span></div>
                             </div>
                             <div class="mt-auto pt-6 border-t border-slate-100">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-sm text-slate-400 line-through font-medium">₹7,000</span>
-                                        <span class="text-3xl font-extrabold text-emerald-600">₹3,499</span>
-                                    </div>
-                                    <div class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full">-50% OFF</div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-3xl font-extrabold text-emerald-600">₹3,499</span>
+                                    <span class="text-sm text-slate-400 line-through">₹7,000</span>
                                 </div>
-                                <button class="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-brand-green transition-all duration-300 shadow-lg shadow-slate-200">Add to Cart</button>
+                                <button class="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-brand-green transition-all shadow-lg">Add to Cart</button>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="mt-12 text-center sm:hidden">
-                         <a href="#" class="inline-block px-10 py-3.5 rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white hover:text-green-900 transition-all backdrop-blur-md shadow-lg">
-                            View All Packages
-                        </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Smart Choices -->
+            
+            <!-- Smart Choices (Also under Diagnostics) -->
             <div class="py-20 bg-slate-50">
                 <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-3xl font-bold text-slate-900 mb-8">Smart Choices</h2>
-                    
-                    <!-- Filters -->
                     <div class="flex gap-3 overflow-x-auto pb-6 no-scrollbar mb-6">
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-brand-green text-white border-transparent shadow-lg shadow-green-500/30 transform hover:-translate-y-0.5">Fertility Checkup</button>
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-white border-slate-200 text-slate-600 hover:border-brand-green hover:text-brand-green hover:shadow-md">Heart</button>
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-white border-slate-200 text-slate-600 hover:border-brand-green hover:text-brand-green hover:shadow-md">Diabetes</button>
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-white border-slate-200 text-slate-600 hover:border-brand-green hover:text-brand-green hover:shadow-md">Vitamins</button>
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-white border-slate-200 text-slate-600 hover:border-brand-green hover:text-brand-green hover:shadow-md">Diabetic</button>
-                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border transition-all bg-white border-slate-200 text-slate-600 hover:border-brand-green hover:text-brand-green hover:shadow-md">Pregnancy</button>
+                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border bg-brand-green text-white">Fertility Checkup</button>
+                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border bg-white border-slate-200 text-slate-600 hover:text-brand-green">Heart</button>
+                        <button class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold border bg-white border-slate-200 text-slate-600 hover:text-brand-green">Diabetes</button>
                     </div>
-
-                    <!-- Products Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Smart Choice 1 -->
-                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden hover:border-brand-green/30">
-                            <div class="mb-4">
-                                <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-6 w-6"></i>
-                                </div>
-                                <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Yoda Garbhraksha (Female)</h3>
-                                <p class="text-sm text-slate-500 font-medium">Complete Antenatal Care</p>
-                            </div>
-                            <div class="mt-auto pt-6 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through font-medium">₹3,999</span>
-                                        <span class="text-2xl font-bold text-slate-900">₹1,999</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-3 rounded-xl border-2 border-brand-green text-brand-green font-bold hover:bg-brand-green hover:text-white transition-all duration-300">Add to Cart</button>
+                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all cursor-pointer">
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Yoda Garbhraksha (Female)</h3>
+                            <p class="text-sm text-slate-500 mb-4">Complete Antenatal Care</p>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                                <span class="text-2xl font-bold text-slate-900">₹1,999</span>
+                                <button class="px-6 py-2 rounded-lg border-2 border-brand-green text-brand-green font-bold text-sm hover:bg-brand-green hover:text-white transition-colors">Add</button>
                             </div>
                         </div>
-
-                        <!-- Smart Choice 2 -->
-                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden hover:border-brand-green/30">
-                            <div class="mb-4">
-                                <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-6 w-6"></i>
-                                </div>
-                                <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Yoda Garbhraksha (Male)</h3>
-                                <p class="text-sm text-slate-500 font-medium">Paternal Health Screening</p>
-                            </div>
-                            <div class="mt-auto pt-6 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through font-medium">₹3,800</span>
-                                        <span class="text-2xl font-bold text-slate-900">₹1,939</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-3 rounded-xl border-2 border-brand-green text-brand-green font-bold hover:bg-brand-green hover:text-white transition-all duration-300">Add to Cart</button>
+                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all cursor-pointer">
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Yoda Garbhraksha (Male)</h3>
+                            <p class="text-sm text-slate-500 mb-4">Paternal Health Screening</p>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                                <span class="text-2xl font-bold text-slate-900">₹1,939</span>
+                                <button class="px-6 py-2 rounded-lg border-2 border-brand-green text-brand-green font-bold text-sm hover:bg-brand-green hover:text-white transition-colors">Add</button>
                             </div>
                         </div>
-
-                        <!-- Smart Choice 3 -->
-                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden hover:border-brand-green/30">
-                            <div class="mb-4">
-                                <div class="h-12 w-12 bg-green-50 rounded-xl flex items-center justify-center text-brand-green mb-4 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-6 w-6"></i>
-                                </div>
-                                <h3 class="font-bold text-xl text-slate-800 leading-snug mb-1">Yoda Garbhraksha Plus (Male)</h3>
-                                <p class="text-sm text-slate-500 font-medium">Advanced Screening</p>
-                            </div>
-                            <div class="mt-auto pt-6 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-4">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through font-medium">₹4,000</span>
-                                        <span class="text-2xl font-bold text-slate-900">₹1,999</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-3 rounded-xl border-2 border-brand-green text-brand-green font-bold hover:bg-brand-green hover:text-white transition-all duration-300">Add to Cart</button>
+                        <div class="bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-xl transition-all cursor-pointer">
+                            <h3 class="font-bold text-xl text-slate-800 mb-1">Yoda Garbhraksha Plus</h3>
+                            <p class="text-sm text-slate-500 mb-4">Advanced Screening</p>
+                            <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+                                <span class="text-2xl font-bold text-slate-900">₹1,999</span>
+                                <button class="px-6 py-2 rounded-lg border-2 border-brand-green text-brand-green font-bold text-sm hover:bg-brand-green hover:text-white transition-colors">Add</button>
                             </div>
                         </div>
                     </div>
@@ -593,551 +445,166 @@
         </div>
 
         <!-- SECTION: DNA DECODER -->
-        <div id="content-dna-decoder" class="service-content hidden">
-            <!-- NutriGenomics Banner -->
+        <div id="content-dna-decoder" class="service-content hidden animate-fade-in scroll-mt-header">
             <div class="bg-green-50 py-16">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid md:grid-cols-2 items-center gap-12">
                         <div>
-                            <div class="inline-block bg-white text-[#00B341] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-green-200">
-                                NutriGenomics
-                            </div>
-                            <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">Your genes know what you should eat. <br/>We help you find out.</h2>
-                            <p class="text-slate-600 mb-8 text-lg leading-relaxed">Discover the perfect diet for your genetic makeup with our advanced Ngx testing. Stop guessing, start personalizing.</p>
-                            <button class="bg-[#00B341] text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-lg shadow-green-200 hover:bg-green-700 transition-all hover:-translate-y-1">Explore NutriGenomics</button>
+                            <div class="inline-block bg-white text-[#00B341] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-green-200">NutriGenomics</div>
+                            <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">Your genes know what you should eat.</h2>
+                            <p class="text-slate-600 mb-8 text-lg">Discover the perfect diet for your genetic makeup with our advanced Ngx testing.</p>
+                            <button class="bg-[#00B341] text-white px-8 py-3.5 rounded-xl font-bold shadow-lg">Explore NutriGenomics</button>
                         </div>
-                        <div class="flex justify-center relative">
-                            <!-- Decorative Circle -->
-                            <div class="absolute inset-0 bg-green-200 rounded-full blur-3xl opacity-30 transform scale-90"></div>
-                            <div class="relative h-80 w-80 rounded-full overflow-hidden shadow-2xl border-4 border-white group">
-                                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" alt="Healthy Food" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                
-                                 <div class="absolute top-0 right-0 bg-white/90 backdrop-blur-sm text-green-700 text-xs font-bold px-4 py-2 rounded-bl-xl shadow-sm z-10 flex items-center gap-2">
-                                    <i data-lucide="leaf" class="h-3 w-3"></i> Eat Smart
-                                </div>
-                            </div>
-                        </div>
+                        <div class="flex justify-center"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" class="w-80 h-80 rounded-full shadow-2xl object-cover border-4 border-white"></div>
                     </div>
                 </div>
             </div>
-
-            <!-- DNA Panels -->
+            
             <div class="py-16 bg-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-2xl font-bold text-slate-900 mb-8">DNA Decoder Panels at a Glance</h2>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-8">DNA Decoder Panels</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <!-- Panel Item Template -->
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">DNA Decoder Cardiovascular Panel</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">DNA Decoder Pulmonary Genetics</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">DNA Decoder Cancer Genetics</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">DNA Decoder Nephrology Panel</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">Comprehensive Neurology Panel</span>
-                        </div>
-                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-[#00B341] bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                            <div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 flex-shrink-0 group-hover:bg-purple-100 transition-colors">
-                                <i data-lucide="dna" class="h-5 w-5"></i>
-                            </div>
-                            <span class="font-bold text-slate-700 text-sm group-hover:text-[#00B341] transition-colors">Comprehensive Diabetes & Obesity Panel</span>
-                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Cardiovascular Panel</span></div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Pulmonary Genetics</span></div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Cancer Genetics</span></div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Nephrology Panel</span></div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Neurology Panel</span></div>
+                        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-green shadow-sm cursor-pointer group"><div class="h-10 w-10 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600"><i data-lucide="dna" class="h-5 w-5"></i></div><span class="font-bold text-slate-700 text-sm">Diabetes & Obesity</span></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- SECTION: MEDMATCH -->
-        <div id="content-medmatch" class="service-content hidden">
-            <div class="py-16 bg-gradient-to-r from-emerald-900 to-green-900 text-white relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-[#00B341] opacity-10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold mb-4">Tailored medicines for you</h2>
-                        <p class="text-emerald-100 max-w-2xl mx-auto">Optimize your treatment with MedMatch technology.</p>
-                        <button class="mt-6 bg-white text-emerald-900 px-8 py-2.5 rounded-full font-bold hover:bg-emerald-50 transition-colors transform hover:scale-105">Know More</button>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-6 mb-16">
-                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30 hover:bg-white/20 transition-colors">
-                            <div class="h-12 w-12 bg-[#00B341] rounded-xl flex items-center justify-center mb-4">
-                                <i data-lucide="pill" class="h-6 w-6 text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Drug Alternatives</h3>
-                            <p class="text-sm text-emerald-100">Find medicine alternatives with lower cost</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30 hover:bg-white/20 transition-colors">
-                            <div class="h-12 w-12 bg-[#00B341] rounded-xl flex items-center justify-center mb-4">
-                                <i data-lucide="activity" class="h-6 w-6 text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Drug Interactions</h3>
-                            <p class="text-sm text-emerald-100">Be confident of safety with drug expert</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30 hover:bg-white/20 transition-colors">
-                            <div class="h-12 w-12 bg-[#00B341] rounded-xl flex items-center justify-center mb-4">
-                                <i data-lucide="utensils" class="h-6 w-6 text-white"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Food Interactions</h3>
-                            <p class="text-sm text-emerald-100">Check medicine & food interactions</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-6">Highly Recommended MedMatch Tests</h3>
+        <div id="content-medmatch" class="service-content hidden animate-fade-in scroll-mt-header">
+            <div class="py-16 bg-gradient-to-r from-emerald-900 to-green-900 text-white">
+                <div class="max-w-7xl mx-auto px-4 text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Tailored medicines for you</h2>
+                    <p class="text-emerald-100">Optimize your treatment with MedMatch technology.</p>
+                </div>
+                <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30"><h3 class="text-xl font-bold mb-2">Drug Alternatives</h3><p class="text-sm text-emerald-100">Find cheaper, effective alternatives.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30"><h3 class="text-xl font-bold mb-2">Drug Interactions</h3><p class="text-sm text-emerald-100">Check safety of combined meds.</p></div>
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30"><h3 class="text-xl font-bold mb-2">Food Interactions</h3><p class="text-sm text-emerald-100">See how diet affects your meds.</p></div>
+                </div>
+                <div class="max-w-7xl mx-auto px-4">
+                    <h3 class="text-xl font-bold mb-6">Highly Recommended Tests</h3>
                     <div class="grid md:grid-cols-3 gap-6 text-slate-900">
-                        <!-- Recommended Test 1 -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Psychiatric / Antipsychotic PGx</h3>
-                                <p class="text-[10px] text-slate-400">Blood Sample • 2 Weeks</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹30,000</span>
-                                        <span class="text-lg font-bold text-slate-900">₹25,200</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
-                         <!-- Recommended Test 2 -->
-                         <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Tacrolimus - Pharmacogenomics</h3>
-                                <p class="text-[10px] text-slate-400">Blood Sample • 1 Week</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹6,500</span>
-                                        <span class="text-lg font-bold text-slate-900">₹5,060</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
-                         <!-- Recommended Test 3 -->
-                         <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Azole Genotype</h3>
-                                <p class="text-[10px] text-slate-400">Blood Sample • 5 Days</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹9,000</span>
-                                        <span class="text-lg font-bold text-slate-900">₹7,500</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg"><h3 class="font-bold mb-1">Psychiatric PGx</h3><p class="text-xs text-slate-400 mb-4">Blood • 2 Weeks</p><div class="flex justify-between items-center"><span class="font-bold text-lg">₹25,200</span><button class="text-brand-green font-bold text-sm">Add</button></div></div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg"><h3 class="font-bold mb-1">Tacrolimus PGx</h3><p class="text-xs text-slate-400 mb-4">Blood • 1 Week</p><div class="flex justify-between items-center"><span class="font-bold text-lg">₹5,060</span><button class="text-brand-green font-bold text-sm">Add</button></div></div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg"><h3 class="font-bold mb-1">Azole Genotype</h3><p class="text-xs text-slate-400 mb-4">Blood • 5 Days</p><div class="flex justify-between items-center"><span class="font-bold text-lg">₹7,500</span><button class="text-brand-green font-bold text-sm">Add</button></div></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- SECTION: FETAL MEDICINE -->
-        <div id="content-fetal-medicine" class="service-content hidden">
+        <div id="content-fetal-medicine" class="service-content hidden animate-fade-in scroll-mt-header">
             <div class="py-16 bg-pink-50/50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-                        <div class="relative">
-                                <div class="absolute -top-10 -left-10 w-32 h-32 bg-pink-200 rounded-full blur-2xl opacity-50"></div>
-                            <h2 class="text-3xl font-bold text-slate-900 mb-2 relative z-10">Growing a Tiny Human, <br/><span class="text-pink-500">How Cool is that?</span></h2>
-                            <p class="text-slate-500 relative z-10">See all our services for fetal medicine</p>
+                        <div>
+                            <h2 class="text-3xl font-bold text-slate-900 mb-2">Growing a Tiny Human, <br/><span class="text-pink-500">How Cool is that?</span></h2>
+                            <p class="text-slate-500">See all our services for fetal medicine.</p>
                         </div>
                         <div class="flex items-center gap-4">
-                            <!-- Thumbnail Image -->
-                            <div class="h-16 w-16 rounded-full overflow-hidden border-2 border-white shadow-md hidden sm:block">
-                                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=200" alt="Baby" class="w-full h-full object-cover">
-                            </div>
-                            <button class="bg-pink-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-pink-600 transition-colors shadow-lg shadow-pink-200 hover:-translate-y-1">Explore Now</button>
+                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=200" class="h-16 w-16 rounded-full border-2 border-white shadow-md">
+                            <button class="bg-pink-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Explore Now</button>
                         </div>
                     </div>
-
-                    <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
-                        <i data-lucide="baby" class="h-5 w-5 text-pink-500"></i>
-                        Maternal & Fetal Scans
-                    </h3>
-                    
                     <div class="grid md:grid-cols-3 gap-6">
-                        <!-- Fetal 1 -->
-                        <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Cervical Length</h3>
-                                <p class="text-[10px] text-slate-400">Ultrasound Scan</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹1,000</span>
-                                        <span class="text-lg font-bold text-slate-900">₹800</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
-                         <!-- Fetal 2 -->
-                         <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Fetal Cardiac Consultation</h3>
-                                <p class="text-[10px] text-slate-400">Specialist Doctor</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹1,500</span>
-                                        <span class="text-lg font-bold text-slate-900">₹1,130</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
-                         <!-- Fetal 3 -->
-                         <div class="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden">
-                            <div class="mb-4">
-                                <div class="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center text-[#00B341] mb-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="activity" class="h-5 w-5"></i>
-                                </div>
-                                <h3 class="font-bold text-slate-800 leading-snug mb-1">Fetal Doppler & Liquor Assessment</h3>
-                                <p class="text-[10px] text-slate-400">Advanced Scan</p>
-                            </div>
-                            <div class="mt-auto pt-4 border-t border-slate-50">
-                                <div class="flex items-center justify-between mb-3">
-                                    <div class="flex flex-col">
-                                        <span class="text-xs text-slate-400 line-through">₹2,000</span>
-                                        <span class="text-lg font-bold text-slate-900">₹1,500</span>
-                                    </div>
-                                </div>
-                                <button class="w-full py-2.5 rounded-lg border border-[#00B341] text-[#00B341] font-bold hover:bg-[#00B341] hover:text-white transition-colors text-sm">Add to Cart</button>
-                            </div>
-                        </div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg border border-pink-100"><h3 class="font-bold mb-1">Cervical Length</h3><p class="text-xs text-slate-400 mb-4">Ultrasound Scan</p><div class="flex justify-between items-center"><span class="font-bold text-lg text-slate-900">₹800</span><button class="text-pink-500 font-bold text-sm border border-pink-200 px-4 py-1 rounded-lg">Add</button></div></div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg border border-pink-100"><h3 class="font-bold mb-1">Fetal Cardiac Consult</h3><p class="text-xs text-slate-400 mb-4">Specialist Doctor</p><div class="flex justify-between items-center"><span class="font-bold text-lg text-slate-900">₹1,130</span><button class="text-pink-500 font-bold text-sm border border-pink-200 px-4 py-1 rounded-lg">Add</button></div></div>
+                        <div class="bg-white rounded-2xl p-5 hover:shadow-lg border border-pink-100"><h3 class="font-bold mb-1">Fetal Doppler</h3><p class="text-xs text-slate-400 mb-4">Advanced Scan</p><div class="flex justify-between items-center"><span class="font-bold text-lg text-slate-900">₹1,500</span><button class="text-pink-500 font-bold text-sm border border-pink-200 px-4 py-1 rounded-lg">Add</button></div></div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div> <!-- End Dynamic Content Container -->
-
-    <!-- Why Us (Always Visible) -->
-    <div class="py-20 bg-white border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Center Aligned Header -->
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-slate-900 mb-4">Why Patients Love Mr. Yoda</h2>
-                <p class="text-2xl font-medium text-[#00B341] italic">"Today's Health, Tomorrow's Joy"</p>
-            </div>
-            
-            <!-- 3 Column Feature Grid (Video Removed) -->
-            <div class="grid md:grid-cols-3 gap-12">
-                <!-- Feature 1 -->
-                <div class="flex flex-col items-center text-center p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="h-16 w-16 bg-green-100 rounded-2xl flex items-center justify-center text-[#00B341] mb-6">
-                        <i data-lucide="microscope" class="h-8 w-8"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 mb-3">AI-Powered Care</h3>
-                    <p class="text-slate-600 leading-relaxed">Smart AI makes reports simple, clear, and actionable - always explained in plain English for better understanding.</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="flex flex-col items-center text-center p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="h-16 w-16 bg-green-100 rounded-2xl flex items-center justify-center text-[#00B341] mb-6">
-                        <i data-lucide="map-pin" class="h-8 w-8"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 mb-3">Testing at Your Doorstep</h3>
-                    <p class="text-slate-600 leading-relaxed">Hassle-free home collection by verified phlebotomists. Safe, hygienic, and always on time at your convenience.</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="flex flex-col items-center text-center p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-shadow duration-300">
-                    <div class="h-16 w-16 bg-green-100 rounded-2xl flex items-center justify-center text-[#00B341] mb-6">
-                        <i data-lucide="shield-check" class="h-8 w-8"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 mb-3">Secure & Transparent</h3>
-                    <p class="text-slate-600 leading-relaxed">Your health data is fully encrypted and private. Trusted by top doctors and scientists for 100% accuracy.</p>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <!-- FAQ (Expanded) -->
-    <div class="py-16 bg-slate-50">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <h2 class="text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>
-            <div class="space-y-3" id="faq-container">
-                <!-- FAQ items -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>What is free home sample collection?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            Yes, we provide absolutely free home sample collection for all our diagnostic tests. Our certified phlebotomists will visit your location at your preferred time slot to collect samples safely.
-                        </div>
-                    </div>
-                </div>
-                 <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>Which tests can I book with home collection?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            Most common diagnostic tests including blood, urine, and stool tests can be booked for home collection. Specialized scans and X-rays will require a visit to our center.
-                        </div>
-                    </div>
-                </div>
-                 <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>How do I book a home sample collection?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            You can easily book a home sample collection through our website or mobile app by selecting your required tests and choosing a convenient time slot.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Added Questions -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>How long does it take to get the test results?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            Most routine test reports are delivered within 6-24 hours via email and WhatsApp. Specialized genetic tests may take 3-5 days for detailed analysis.
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>Are your labs NABL accredited?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            Yes, all our partner labs are NABL accredited and ICMR approved, ensuring the highest standards of accuracy and reliability for your health reports.
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>What payment methods do you accept?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            We accept online payments via UPI, Credit/Debit Cards, and Net Banking. Cash on collection is also available for home visits.
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item transition-all hover:shadow-md">
-                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
-                        <span>Can I reschedule my appointment?</span>
-                        <i data-lucide="plus" class="h-4 w-4 text-slate-400 icon-plus transition-transform duration-200"></i>
-                        <i data-lucide="minus" class="h-4 w-4 text-[#00B341] icon-minus hidden transition-transform duration-200"></i>
-                    </button>
-                    <div class="faq-content bg-slate-50 border-t border-slate-100">
-                        <div class="p-4 pt-2 text-sm text-slate-500 leading-relaxed">
-                            Absolutely. You can reschedule your appointment up to 2 hours before the scheduled time through our app or by calling our support line.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Banner / Home Before Membership -->
+    <!-- Bottom Banner -->
     <div class="w-full hidden lg:block">
         <img src="https://mryoda-prod.s3.ap-south-1.amazonaws.com/web/home_before_membership.jpg-1757920022938" alt="Home Before Membership" class="w-full h-auto object-cover">
     </div>
 
-    <!-- Sticky Mobile Bottom Bar -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 lg:hidden z-50 flex gap-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <button class="flex-1 bg-white border border-[#00B341] text-[#00B341] py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
-            <i data-lucide="file-text" class="h-4 w-4"></i> Upload Rx
-        </button>
-        <button class="flex-1 bg-[#00B341] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-green-200">
-            Book Test
-        </button>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="fixed bottom-20 right-4 lg:bottom-8 lg:right-8 bg-[#00B341] text-white p-3 rounded-full shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 hover:bg-green-700 z-40" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-        <i data-lucide="arrow-up" class="h-6 w-6"></i>
-    </button>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-300 pt-16 pb-24 lg:pb-8"> <!-- Extra padding bottom for mobile bar -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-                <div class="col-span-2 md:col-span-1">
-                    <a href="#" class="flex items-center gap-2 mb-6 group">
-                        <div class="bg-brand-green p-1.5 rounded-lg transition-transform duration-300 group-hover:scale-110">
-                            <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="32" r="10" fill="white"/>
-                                <path d="M50 45C50 45 35 45 25 30C25 30 25 65 48 80L50 82L52 80C75 65 75 30 75 30C65 45 50 45 50 45Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <span class="font-bold text-xl text-white group-hover:text-brand-green transition-colors">Yoda</span>
-                    </a>
-                    <p class="text-sm text-slate-400 mb-6 leading-relaxed">
-                        Today's Health, Tomorrow's Joy.
-                    </p>
-                    <div class="flex gap-4 mb-6">
-                        <div class="w-8 h-8 bg-slate-800 rounded-full hover:bg-[#00B341] transition-colors cursor-pointer flex items-center justify-center group">
-                            <span class="font-bold text-xs group-hover:text-white transition-colors">IG</span>
-                        </div>
-                        <div class="w-8 h-8 bg-slate-800 rounded-full hover:bg-[#00B341] transition-colors cursor-pointer flex items-center justify-center group">
-                            <span class="font-bold text-xs group-hover:text-white transition-colors">FB</span>
-                        </div>
-                        <div class="w-8 h-8 bg-slate-800 rounded-full hover:bg-[#00B341] transition-colors cursor-pointer flex items-center justify-center group">
-                            <span class="font-bold text-xs group-hover:text-white transition-colors">LI</span>
-                        </div>
-                    </div>
-                    <div class="text-xs text-slate-500 border border-slate-700 px-3 py-1 rounded inline-block">
-                        ICMR Accredited
+    <!-- FAQ -->
+    <div class="py-16 bg-slate-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-3" id="faq-container">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item">
+                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
+                        <span>How long does it take to get reports?</span>
+                        <i data-lucide="plus" class="h-4 w-4 icon-plus"></i>
+                        <i data-lucide="minus" class="h-4 w-4 icon-minus hidden"></i>
+                    </button>
+                    <div class="faq-content bg-slate-50 border-t border-slate-100 p-4 text-sm text-slate-500">
+                        Routine tests: 6-24 hours. Specialized tests: 2-3 days.
                     </div>
                 </div>
-                
-                <div>
-                    <h4 class="text-white font-bold mb-4">Diagnostics</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Smart Screening</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Fever Profile</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Diabetes Care</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Heart Health</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4">DNA Decoder</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Cancer Genetics</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Cardio Risk</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">NutriGenomics</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Ancestry</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-bold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">About Mr. Yoda</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Conditions</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-[#00B341] transition-colors">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-4">Download App</h4>
-                    <div class="space-y-3">
-                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 flex items-center gap-3 cursor-pointer hover:bg-slate-700 transition-colors group">
-                            <i data-lucide="smartphone" class="h-6 w-6 text-slate-400 group-hover:text-[#00B341] transition-colors"></i>
-                            <div>
-                                <p class="text-[10px] text-slate-400 uppercase">Get it on</p>
-                                <p class="text-sm font-bold text-white">Google Play</p>
-                            </div>
-                        </div>
-                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700 flex items-center gap-3 cursor-pointer hover:bg-slate-700 transition-colors group">
-                            <i data-lucide="smartphone" class="h-6 w-6 text-slate-400 group-hover:text-[#00B341] transition-colors"></i>
-                            <div>
-                                <p class="text-[10px] text-slate-400 uppercase">Download on the</p>
-                                <p class="text-sm font-bold text-white">App Store</p>
-                            </div>
-                        </div>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden faq-item">
+                    <button class="w-full flex items-center justify-between p-4 text-left font-medium text-slate-700 hover:bg-slate-50 transition-colors faq-trigger">
+                        <span>Can I cancel my booking?</span>
+                        <i data-lucide="plus" class="h-4 w-4 icon-plus"></i>
+                    </button>
+                    <div class="faq-content bg-slate-50 border-t border-slate-100 p-4 text-sm text-slate-500">
+                        Yes, free cancellation up to 2 hours before the slot.
                     </div>
                 </div>
-            </div>
-            
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-                <p>© 2025 Yoda Diagnostics. All rights reserved.</p>
-                <div class="flex gap-4 mt-4 md:mt-0 items-center">
-                    <a href="#" class="hover:text-white">Terms</a>
-                    <a href="#" class="hover:text-white">Privacy</a>
-                </div>
+                <!-- Added more questions below in JS/HTML structure -->
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- Initialize Icons & JS Interactivity -->
+    <!-- Sticky Mobile Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 lg:hidden z-50 flex gap-3 shadow-lg">
+        <button class="flex-1 bg-white border border-[#00B341] text-[#00B341] py-3 rounded-xl font-bold text-sm">Upload Rx</button>
+        <button class="flex-1 bg-[#00B341] text-white py-3 rounded-xl font-bold text-sm shadow-lg">Book Test</button>
+    </div>
+
+    <!-- Scripts -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Mobile Menu Logic
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        function toggleMobileMenu() {
+        
+        mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
+            const icons = mobileMenuBtn.querySelectorAll('svg');
+            icons.forEach(icon => icon.classList.toggle('hidden'));
+        });
+
+        // Service Switcher with Auto-Scroll
+        function switchService(serviceId) {
+            // Hide all
+            document.querySelectorAll('.service-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show active
+            const content = document.getElementById('content-' + serviceId);
+            if(content) {
+                content.classList.remove('hidden');
+                // Auto-scroll on mobile/tablet
+                if(window.innerWidth < 1024) {
+                    content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // Update Toggle State
+            document.querySelectorAll('.bento-card').forEach(card => card.classList.remove('active'));
+            const btn = document.getElementById('btn-' + serviceId);
+            if(btn) btn.classList.add('active');
         }
 
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        // Enhanced FAQ Logic for Smooth Animation
-        document.querySelectorAll('.faq-trigger').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const iconPlus = button.querySelector('.icon-plus');
-                const iconMinus = button.querySelector('.icon-minus');
+        // FAQ Toggle
+        document.querySelectorAll('.faq-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icons = btn.querySelectorAll('svg');
+                icons.forEach(icon => icon.classList.toggle('hidden'));
                 
-                // Toggle icons
-                iconPlus.classList.toggle('hidden');
-                iconMinus.classList.toggle('hidden');
-                
-                // Animate height
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
                     content.classList.remove('active');
@@ -1147,42 +614,6 @@
                 }
             });
         });
-
-        // Scroll to Top Logic
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.remove('translate-y-20', 'opacity-0');
-            } else {
-                scrollToTopBtn.classList.add('translate-y-20', 'opacity-0');
-            }
-        });
-
-        // SERVICE SWITCHER LOGIC
-        function switchService(serviceId) {
-            // 1. Hide all service content sections
-            document.querySelectorAll('.service-content').forEach(el => {
-                el.classList.add('hidden');
-            });
-
-            // 2. Show the selected service content
-            const selectedContent = document.getElementById('content-' + serviceId);
-            if(selectedContent) {
-                selectedContent.classList.remove('hidden');
-                // Optional: Scroll to content start for better UX
-                // document.getElementById('dynamic-content-container').scrollIntoView({behavior: 'smooth', block: 'start'});
-            }
-
-            // 3. Update Bento Grid Active State (Visual Feedback)
-            document.querySelectorAll('.bento-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            const activeCard = document.getElementById('btn-' + serviceId);
-            if(activeCard) {
-                activeCard.classList.add('active');
-            }
-        }
     </script>
 </body>
 </html>
